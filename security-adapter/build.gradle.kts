@@ -8,9 +8,6 @@ java {
 	targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-ext["spring-security.version"] = "5.2.0.BUILD-SNAPSHOT"
-ext["spring-security-config.version"] = "5.2.0.BUILD-SNAPSHOT"
-
 dependencies {
 	api("org.springframework.boot:spring-boot")
 	api("org.springframework.boot:spring-boot-autoconfigure")

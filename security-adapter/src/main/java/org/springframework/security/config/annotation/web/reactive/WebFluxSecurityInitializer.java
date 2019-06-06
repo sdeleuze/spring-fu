@@ -1,6 +1,5 @@
 package org.springframework.security.config.annotation.web.reactive;
 
-import org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.security.web.reactive.result.view.CsrfRequestDataValueProcessor;

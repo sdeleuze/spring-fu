@@ -51,6 +51,6 @@ class WebFluxSecurityDsl(private val init: WebFluxSecurityDsl.() -> Unit) : Abst
  * @sample org.springframework.fu.kofu.samples.securityDsl
  * @author Jonas Bark
  */
-fun WebFluxServerDsl.webFluxSecurity(dsl: WebFluxSecurityDsl.() -> Unit = {}) {
+fun WebFluxServerDsl.security(dsl: WebFluxSecurityDsl.() -> Unit = {}) {
     WebFluxSecurityDsl(dsl).initialize(context)
 }

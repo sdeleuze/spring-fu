@@ -21,7 +21,6 @@ import org.springframework.boot.WebApplicationType
 import org.springframework.fu.kofu.application
 import org.springframework.fu.kofu.localServerPort
 import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager
-import org.springframework.security.config.web.server.ServerHttpSecurity
 import org.springframework.security.core.userdetails.MapReactiveUserDetailsService
 import org.springframework.security.core.userdetails.User
 import org.springframework.test.web.reactive.server.WebTestClient
@@ -44,16 +43,16 @@ class SecurityDslTests {
 
         val app = application(WebApplicationType.REACTIVE) {
             security {
-                authenticationManager = repoAuthenticationManager
-                http {
-                    authenticationManager(repoAuthenticationManager)
-                    headers()
-                    logout()
-                }
-            }
+				authenticationManager = repoAuthenticationManager
+				http {
+					authenticationManager(repoAuthenticationManager)
+					headers()
+					logout()
+				}
+			}
             webFlux {
                 port = 0
-                webFluxSecurity()
+				security()
                 router {
                     GET("/view") { ok().build() }
                 }
