@@ -37,47 +37,47 @@ import org.springframework.security.crypto.password.PasswordEncoder
  */
 class SecurityDsl(private val init: SecurityDsl.() -> Unit) : AbstractDsl() {
 
-    var authenticationManager: ReactiveAuthenticationManager? = null
+	var authenticationManager: ReactiveAuthenticationManager? = null
 
-    var reactiveUserDetailsService: ReactiveUserDetailsService? = null
+	var reactiveUserDetailsService: ReactiveUserDetailsService? = null
 
-    var passwordEncoder: PasswordEncoder? = null
+	var passwordEncoder: PasswordEncoder? = null
 
-    var userDetailsPasswordService: ReactiveUserDetailsPasswordService? = null
+	var userDetailsPasswordService: ReactiveUserDetailsPasswordService? = null
 
-    internal var httpSecurity: ServerHttpSecurity? = null
+	internal var httpSecurity: ServerHttpSecurity? = null
 
-    override fun initialize(context: GenericApplicationContext) {
-        super.initialize(context)
-        init()
-        SecurityInitializer(
-            authenticationManager,
-            reactiveUserDetailsService,
-            passwordEncoder,
-            userDetailsPasswordService,
-            httpSecurity
-        ).initialize(context)
-    }
+	override fun initialize(context: GenericApplicationContext) {
+		super.initialize(context)
+		init()
+		SecurityInitializer(
+			authenticationManager,
+			reactiveUserDetailsService,
+			passwordEncoder,
+			userDetailsPasswordService,
+			httpSecurity
+		).initialize(context)
+	}
 
 
-    class HttpSecurityDsl(
-        private val init: ServerHttpSecurity.() -> Unit,
-        private val securityDsl: SecurityDsl
-    ) : AbstractDsl() {
+	class HttpSecurityDsl(
+		private val init: ServerHttpSecurity.() -> Unit,
+		private val securityDsl: SecurityDsl
+	) : AbstractDsl() {
 
-        private val httpSecurity: ServerHttpSecurity = ServerHttpSecurity.http()
+		private val httpSecurity: ServerHttpSecurity = ServerHttpSecurity.http()
 
-        override fun initialize(context: GenericApplicationContext) {
-            super.initialize(context)
-            httpSecurity.apply(init)
-            securityDsl.httpSecurity = httpSecurity
-        }
+		override fun initialize(context: GenericApplicationContext) {
+			super.initialize(context)
+			httpSecurity.apply(init)
+			securityDsl.httpSecurity = httpSecurity
+		}
 
-    }
+	}
 
-    fun http(dsl: ServerHttpSecurity.() -> Unit = {}) {
-        HttpSecurityDsl(dsl, this).initialize(context)
-    }
+	fun http(dsl: ServerHttpSecurity.() -> Unit = {}) {
+		HttpSecurityDsl(dsl, this).initialize(context)
+	}
 }
 
 /**
@@ -89,7 +89,7 @@ class SecurityDsl(private val init: SecurityDsl.() -> Unit) : AbstractDsl() {
  * @author Jonas Bark
  */
 fun ConfigurationDsl.security(dsl: SecurityDsl.() -> Unit = {}) {
-    SecurityDsl(dsl).initialize(context)
+	SecurityDsl(dsl).initialize(context)
 }
 
 

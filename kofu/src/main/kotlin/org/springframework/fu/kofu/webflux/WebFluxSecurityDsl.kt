@@ -36,11 +36,11 @@ import org.springframework.security.crypto.password.PasswordEncoder
  */
 class WebFluxSecurityDsl(private val init: WebFluxSecurityDsl.() -> Unit) : AbstractDsl() {
 
-    override fun initialize(context: GenericApplicationContext) {
-        super.initialize(context)
-        init()
-        WebFluxSecurityInitializer().initialize(context)
-    }
+	override fun initialize(context: GenericApplicationContext) {
+		super.initialize(context)
+		init()
+		WebFluxSecurityInitializer().initialize(context)
+	}
 }
 
 /**
@@ -52,5 +52,5 @@ class WebFluxSecurityDsl(private val init: WebFluxSecurityDsl.() -> Unit) : Abst
  * @author Jonas Bark
  */
 fun WebFluxServerDsl.security(dsl: WebFluxSecurityDsl.() -> Unit = {}) {
-    WebFluxSecurityDsl(dsl).initialize(context)
+	WebFluxSecurityDsl(dsl).initialize(context)
 }

@@ -6,10 +6,10 @@ import org.springframework.fu.kofu.webflux.security
 import org.springframework.fu.kofu.webflux.webFlux
 
 fun securityDsl() {
-    application(WebApplicationType.REACTIVE) {
-        security()
-        webFlux {
-            security()
-        }
-    }
+	application(WebApplicationType.REACTIVE) {
+		security()
+		webFlux {
+			security()
+		}
+	}
 }
